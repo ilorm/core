@@ -1,11 +1,9 @@
 # ilorm (I Love ORM)
 New kind of NodeJS ORM.
 
-[![Circle status](https://img.shields.io/circleci/project/github/nodegang/ilorm.svg)]()
-[![Circle status](https://img.shields.io/github/issues/nodegang/ilorm.svg)]()
-[![Circle status](https://img.shields.io/github/license/nodegang/ilorm.svg)]()
-[![Circle status](https://img.shields.io/codeclimate/maintainability/nodegang/ilorm.svg)]()
-[![Circle status](https://img.shields.io/codeclimate/c/nodegang/ilorm.svg)]()
+[![Circle status](https://img.shields.io/circleci/project/github/ilorm/core.svg)]()
+[![Circle status](https://img.shields.io/github/issues/ilorm/core.svg)]()
+[![Circle status](https://img.shields.io/github/license/ilorm/core.svg)]()
 
 You can found example and documentation on the 
 [Official Ilorm website](https://nodegang.github.io/ilorm-site/)
