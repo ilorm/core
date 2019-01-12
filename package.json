@@ -1,17 +1,56 @@
 {
   "name": "ilorm",
   "version": "0.2.0",
-  "description": "Main package of ilorm ORM",
+  "description": "Core package of ilorm ORM",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docs": "jsdoc -r /lib -d docs",
+    "eslint": "eslint --fix lib/**",
+    "test": "npm run launchtest",
+    "test-win": "set NODE_ENV=test&& mocha --recursive --reporter spec *.test.js",
+    "launchtest": "NODE_ENV=test mocha --recursive --reporter spec $(find -name '*.test.js'  -not -path '**/node_modules/**' )",
+    "cover": "nyc npm test",
+    "cover-win": "nyc npm run test-win",
+    "circle_ci_test": "NODE_ENV=test nyc node_modules/mocha/bin/_mocha --recursive --reporter spec $(find -name '*.test.js'  -not -path '**/node_modules/**' )"
   },
   "keywords": [
     "orm",
+    "core",
     "ilorm"
   ],
   "dependencies": {
-    "ilorm-constants": "^0.1.0"
+    "ilorm-constants": "^0.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "eslint": "^4.10.0",
+    "jsdoc": "^3.5.5",
+    "mocha": "^3.1.2",
+    "nyc": "^12.0.2",
+    "sinon": "^4.2.2"
+  },
+  "nyc": {
+    "all": true,
+    "cache": true,
+    "check-coverage": true,
+    "per-file": true,
+    "report-dir": "./coverage",
+    "branches": [0, 95],
+    "functions": [0, 95],
+    "statements": [0, 95],
+    "lines": [0, 95],
+    "reporter": [
+      "html",
+      "text-summary"
+    ],
+    "include": [
+      "index.js",
+      "lib/**/*.js"
+    ],
+    "exclude": [
+      "*.test.js"
+    ]
   },
   "author": "guillaume DAIX",
   "license": "MIT"
