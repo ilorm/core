@@ -7,7 +7,7 @@
     "docs": "jsdoc -r /lib -d docs",
     "eslint": "eslint --fix lib/**",
     "test": "npm run launchtest",
-    "test-win": "set NODE_ENV=test&& mocha --recursive --reporter spec *.test.js",
+    "test-win": "set NODE_ENV=test&& mocha --recursive --reporter spec *.test.js lib",
     "launchtest": "NODE_ENV=test mocha --recursive --reporter spec $(find -name '*.test.js'  -not -path '**/node_modules/**' )",
     "cover": "nyc npm test",
     "cover-win": "nyc npm run test-win",
@@ -49,7 +49,8 @@
       "lib/**/*.js"
     ],
     "exclude": [
-      "*.test.js"
+      "*.test.js",
+      "lib/**/*.test.js"
     ]
   },
   "author": "guillaume DAIX",
