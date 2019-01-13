@@ -1,5 +1,5 @@
 # ilorm (I Love ORM)
-New kind of NodeJS ORM.
+New way to manipulate data with NodeJS.
 
 [![Circle status](https://img.shields.io/circleci/project/github/ilorm/core.svg)]()
 [![Circle status](https://img.shields.io/github/issues/ilorm/core.svg)]()
@@ -12,7 +12,7 @@ You can found example and documentation on the
 ## Why a new ORM ?
 - Use newest feature of ECMAScript (modern javascript).
 - Universal database connector (MongoDB, SQL, Redis, REST, CSV...).
-- Could create powerful plugin using the "class" inheritance.
+- Easy way to create powerful plugin using the "class" inheritance.
 
 ## Features
 - Universal connector to bind every kind of database
