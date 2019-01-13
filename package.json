@@ -7,8 +7,8 @@
     "docs": "jsdoc -r /lib -d docs",
     "eslint": "eslint --fix lib/**",
     "test": "npm run launchtest",
-    "test-win": "set NODE_ENV=test&& mocha --recursive --reporter spec *.test.js lib",
-    "launchtest": "NODE_ENV=test mocha --recursive --reporter spec $(find -name '*.test.js'  -not -path '**/node_modules/**' )",
+    "test-win": "set NODE_ENV=test&& mocha --recursive *.test.js lib spec",
+    "launchtest": "NODE_ENV=test mocha --recursive --reporter $(find -name '*.test.js'  -not -path '**/node_modules/**' )",
     "cover": "nyc npm test",
     "cover-win": "nyc npm run test-win",
     "circle_ci_test": "NODE_ENV=test nyc node_modules/mocha/bin/_mocha --recursive --reporter spec $(find -name '*.test.js'  -not -path '**/node_modules/**' )"
@@ -19,7 +19,7 @@
     "ilorm"
   ],
   "dependencies": {
-    "ilorm-constants": "^0.2.0"
+    "ilorm-constants": "^0.3.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
