@@ -4,6 +4,7 @@ New kind of NodeJS ORM.
 [![Circle status](https://img.shields.io/circleci/project/github/ilorm/core.svg)]()
 [![Circle status](https://img.shields.io/github/issues/ilorm/core.svg)]()
 [![Circle status](https://img.shields.io/github/license/ilorm/core.svg)]()
+[![](https://img.shields.io/librariesio/github/ilorm/core.svg)](https://libraries.io/github/ilorm/core)
 
 You can found example and documentation on the 
 [Official Ilorm website](https://nodegang.github.io/ilorm-site/)
