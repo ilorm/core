@@ -22,13 +22,13 @@
     "ilorm-constants": "^0.2.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "eslint": "^4.10.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^5.12.0",
     "jsdoc": "^3.5.5",
-    "mocha": "^3.1.2",
-    "nyc": "^12.0.2",
-    "sinon": "^4.2.2"
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "sinon": "^7.2.2"
   },
   "nyc": {
     "all": true,
@@ -36,10 +36,22 @@
     "check-coverage": true,
     "per-file": true,
     "report-dir": "./coverage",
-    "branches": [0, 95],
-    "functions": [0, 95],
-    "statements": [0, 95],
-    "lines": [0, 95],
+    "branches": [
+      0,
+      95
+    ],
+    "functions": [
+      0,
+      95
+    ],
+    "statements": [
+      0,
+      95
+    ],
+    "lines": [
+      0,
+      95
+    ],
     "reporter": [
       "html",
       "text-summary"
