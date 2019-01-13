@@ -30,30 +30,34 @@ const userModel = newModel({
 
 describe('spec ilorm', () => {
   describe('Query', () => {
-    it('Could use sort operator to trigger sorting ascending per a specific field', async () => {
-      const onSort = sinon.spy();
-      connector.findOne = query => {
-        query.queryBuilder({ onSort, });
+    it('Could use skip to ignore some fields', async () => {
+      const onOptions = sinon.spy();
+      connector.find = query => {
+        query.queryBuilder({ onOptions, });
+
+        return [];
       };
 
       await userModel.query()
-        .lastName.useAsSortAsc()
-        .findOne();
+        .skip(10)
+        .find();
 
-      expect(onSort).to.have.been.calledWith({ behavior: SORT_BEHAVIOR.ASCENDING, key: 'lastName' });
+      expect(onOptions).to.have.been.calledWith({ limit: undefined, skip: 10 });
     });
 
-    it('Could use sort operator to trigger sorting descending per a specific field', async () => {
-      const onSort = sinon.spy();
-      connector.findOne = query => {
-        query.queryBuilder({ onSort, });
+    it('Could use limit', async () => {
+      const onOptions = sinon.spy();
+      connector.find = query => {
+        query.queryBuilder({ onOptions, });
+
+        return [];
       };
 
       await userModel.query()
-        .lastName.useAsSortDesc()
-        .findOne();
+        .limit(10)
+        .find();
 
-      expect(onSort).to.have.been.calledWith({ behavior: SORT_BEHAVIOR.DESCENDING, key: 'lastName' });
+      expect(onOptions).to.have.been.calledWith({ limit: 10, skip: undefined });
     });
   });
 });

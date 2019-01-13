@@ -52,5 +52,33 @@ describe('spec ilorm', () => {
       expect(onOperatorBranchB).to.have.been.calledWith({ field: 'firstName', operator: 'is', value: 'Tom' });
       expect(onOperator).to.have.been.calledWith({ field: 'lastName', operator: 'is', value: 'Daix' });
     });
+    it('Should handle multiple or at the same query level', async () => {
+      const onOperatorBranchA = sinon.spy();
+      const onOperatorBranchB = sinon.spy();
+      const onOr = ([branchA, branchB]) => {
+        branchA.queryBuilder({ onOperator: onOperatorBranchA });
+        branchB.queryBuilder({ onOperator: onOperatorBranchB });
+      };
+      connector.findOne = query => {
+        query.queryBuilder({ onOr, });
+      };
+
+      await userModel.query()
+        .or(branch => {
+          branch().firstName.is('Guillaume');
+          branch().firstName.is('Tom');
+        })
+        .or(branch => {
+          branch().lastName.is('Daix');
+          branch().lastName.is('Smith');
+        })
+        .findOne();
+
+      expect(onOperatorBranchA).to.have.been.calledWith({ field: 'firstName', operator: 'is', value: 'Guillaume' });
+      expect(onOperatorBranchA).to.have.been.calledWith({ field: 'lastName', operator: 'is', value: 'Daix' });
+      expect(onOperatorBranchB).to.have.been.calledWith({ field: 'firstName', operator: 'is', value: 'Tom' });
+      expect(onOperatorBranchB).to.have.been.calledWith({ field: 'lastName', operator: 'is', value: 'Smith' });
+
+    });
   });
 });
