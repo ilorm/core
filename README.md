@@ -27,7 +27,7 @@ You can found example and documentation on the
 const ilorm = require('ilorm');
 const schema = ilorm.schema;
 
-const schema = schema.new({
+const userSchema = schema.new({
   firstName: schema.String().required(),
   lastName: schema.String().required(),
   children: schema.Array(schema.reference('User'))
