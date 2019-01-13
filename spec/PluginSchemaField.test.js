@@ -5,7 +5,7 @@ const Ilorm = require('..').constructor;
 const ilorm = new Ilorm();
 const { Schema } = ilorm;
 
-describe('spec ilorm - Plugin SchemaField', () => {
+describe('spec ilorm', () => {
   describe('Check Schema Field casting feature', () => {
     it('1 - Plugin can declare if it listen specific field value in SchemaField', () => {
       Schema.declarePluginOption('pluginField');

@@ -7,7 +7,7 @@ New way to manipulate data with NodeJS.
 [![](https://img.shields.io/librariesio/github/ilorm/core.svg)](https://libraries.io/github/ilorm/core)
 
 You can found example and documentation on the 
-[Official Ilorm website](https://nodegang.github.io/ilorm-site/)
+[Official Ilorm website](https://ilorm.github.io)
 
 ## Why a new ORM ?
 - Use newest feature of ECMAScript (modern javascript).
@@ -74,10 +74,13 @@ Represent a javascript reference to another instance.
 ```javascript
 const ilorm = require('ilorm');
 const ilormMongo = require('ilorm-connector-mongo');
-const model = require('ilorm').model;
 
 const userSchema = require('./schema');
-const userModel = model('User', userModel, ilormMongo({ db }));
+const userModel = ilorm.newModel({
+  name:'User',
+  connector: ilormMongo({ db }),
+  schema: userSchema,
+});
 
 userModel.query()
   .firstName.is('Smith')

@@ -4,7 +4,7 @@ const { expect, } = require('chai');
 const Ilorm = require('..').constructor;
 const ilorm = new Ilorm();
 
-describe('spec ilorm - RequiredField', () => {
+describe('spec ilorm', () => {
   describe('Required field', () => {
     it('Undefined required field are not valid', async () => {
       const boolean = new ilorm.Schema.Types.Boolean;

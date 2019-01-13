@@ -18,6 +18,13 @@ describe('spec ilorm', () => {
       expect(date.castValue('11/11/2018')).to.be.a('date');
     });
 
+    it('Should not create a new date instance when casting', () => {
+      const date = new ilorm.Schema.Types.Date;
+      const rawDate = new Date('11/11/2018');
+
+      expect(date.castValue(rawDate)).to.be.equal(rawDate);
+    });
+
     it('Should cast a number value', () => {
       const number = new ilorm.Schema.Types.Number;
 
