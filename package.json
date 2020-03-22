@@ -1,6 +1,6 @@
 {
   "name": "ilorm",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Core package of ilorm ORM",
   "main": "index.js",
   "scripts": {
