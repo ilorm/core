@@ -1,6 +1,6 @@
 {
   "name": "ilorm",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Core package of ilorm ORM",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "ilorm"
   ],
   "dependencies": {
-    "ilorm-constants": "^0.3.0"
+    "ilorm-constants": "^0.4.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
