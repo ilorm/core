@@ -40,33 +40,33 @@ const userSchema = schema.new({
 | Function | Description |
 |:--------:|-------------|
 | *static* new( schema ) | Create a new ilorm schema. |
-| *static* string() | Instantiate a SchemaField/String |
-| *static* number() | Instantiate a SchemaField/Number |
-| *static* boolean() | Instantiate a SchemaField/Boolean |
-| *static* date() | Instantiate a SchemaField/Date |
-| *static* reference() | Instantiate a SchemaField/Reference |
+| *static* string() | Instantiate a Field/String |
+| *static* number() | Instantiate a Field/Number |
+| *static* boolean() | Instantiate a Field/Boolean |
+| *static* date() | Instantiate a Field/Date |
+| *static* reference() | Instantiate a Field/Reference |
 
-### All SchemaField
-All SchemaField are children of the class SchemaField. This class contains this method :
+### All Fields
+All Fields are children of the class BaseField. This class contains this method :
 
 | Function | Description |
 |:--------:|-------------|
 | required() | The field is required for create an object (per default not required). |
 | default(`value`) |  Set a precise value for default (if you do not set a value at creation). |
 
-### SchemaField/Number
+### Field/Number
 Represent a javascript number.
 
-### SchemaField/String
+### Field/String
 Represent a javascript string.
 
-### SchemaField/Boolean
+### Field/Boolean
 Represent a javascript boolean.
 
-### SchemaField/Date
+### Field/Date
 Represent a javascript date.
 
-### SchemaField/Reference
+### Field/Reference
 Represent a javascript reference to another instance.
 
 

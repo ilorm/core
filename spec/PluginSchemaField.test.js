@@ -7,7 +7,7 @@ const { Schema } = ilorm;
 
 describe('spec ilorm', () => {
   describe('Check Schema Field casting feature', () => {
-    it('1 - Plugin can declare if it listen specific field value in SchemaField', () => {
+    it('1 - Plugin can declare if it listen specific field value in Field', () => {
       Schema.declarePluginOption('pluginField');
 
       const schema = new Schema({});
@@ -15,7 +15,7 @@ describe('spec ilorm', () => {
       expect(schema.pluginField.length).to.be.equal(0);
     });
 
-    it('2 - SchemaField with specific attribute field need will be identified', () => {
+    it('2 - Field with specific attribute field need will be identified', () => {
       const trackedField = Schema.boolean();
       trackedField.pluginField = true;
 
@@ -29,7 +29,7 @@ describe('spec ilorm', () => {
       ]);
     });
 
-    it('3 - SchemaField with unknown attribute field need will not be identified', () => {
+    it('3 - Field with unknown attribute field need will not be identified', () => {
       const trackedField = Schema.boolean();
       trackedField.anotherField = true;
 
