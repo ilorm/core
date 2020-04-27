@@ -3,6 +3,7 @@
 #=====#
 .foreverignore
 commit.txt
+yarn.lock
 
 #======#
 # LOGS #
