@@ -1,9 +1,9 @@
 # ilorm (I Love ORM)
 New way to manipulate data with NodeJS.
 
-[![Circle status](https://img.shields.io/circleci/project/github/ilorm/core.svg)]()
-[![Circle status](https://img.shields.io/github/issues/ilorm/core.svg)]()
-[![Circle status](https://img.shields.io/github/license/ilorm/core.svg)]()
+![.github/workflows/test.yaml](https://github.com/ilorm/core/workflows/.github/workflows/test.yaml/badge.svg?branch=master)
+[![.github/issues](https://img.shields.io/github/issues/ilorm/core.svg)]()
+[![./LICENCE](https://img.shields.io/github/license/ilorm/core.svg)]()
 [![](https://img.shields.io/librariesio/github/ilorm/core.svg)](https://libraries.io/github/ilorm/core)
 
 You can found example and documentation on the 
