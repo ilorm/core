@@ -3,7 +3,7 @@ const { expect, } = require('chai');
 // Create a clean instance of ilorm :
 const Ilorm = require('..').constructor;
 const ilorm = new Ilorm();
-const { Schema } = ilorm;
+const { Schema, } = ilorm;
 
 describe('spec ilorm', () => {
   describe('Check Schema Field casting feature', () => {
@@ -17,6 +17,7 @@ describe('spec ilorm', () => {
 
     it('2 - Field with specific attribute field need will be identified', () => {
       const trackedField = Schema.boolean();
+
       trackedField.pluginField = true;
 
       const schema = new Schema({
@@ -31,6 +32,7 @@ describe('spec ilorm', () => {
 
     it('3 - Field with unknown attribute field need will not be identified', () => {
       const trackedField = Schema.boolean();
+
       trackedField.anotherField = true;
 
       const schema = new Schema({

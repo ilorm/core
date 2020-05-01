@@ -7,7 +7,7 @@ const ilorm = new Ilorm();
 describe('spec ilorm', () => {
   describe('Required field', () => {
     it('Undefined required field are not valid', async () => {
-      const boolean = new ilorm.Schema.Types.Boolean;
+      const boolean = new ilorm.Schema.Types.Boolean();
 
       boolean.required();
 
@@ -15,7 +15,7 @@ describe('spec ilorm', () => {
     });
 
     it('Undefined unrequired field are valid', async () => {
-      const boolean = new ilorm.Schema.Types.Boolean;
+      const boolean = new ilorm.Schema.Types.Boolean();
 
       boolean.required(false);
 
@@ -23,7 +23,7 @@ describe('spec ilorm', () => {
     });
 
     it('Per default field are unrequired', async () => {
-      const boolean = new ilorm.Schema.Types.Boolean;
+      const boolean = new ilorm.Schema.Types.Boolean();
 
       expect(await boolean.isValid()).to.be.equal(true);
     });

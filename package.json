@@ -1,11 +1,11 @@
 {
   "name": "ilorm",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Core package of ilorm ORM",
   "main": "index.js",
   "scripts": {
     "docs": "jsdoc -r /lib -d docs",
-    "eslint": "eslint --fix lib/**",
+    "eslint": "eslint --fix lib/** spec/**",
     "test": "npm run launchtest",
     "test-win": "set NODE_ENV=test&& mocha --recursive *.test.js lib spec",
     "launchtest": "NODE_ENV=test mocha --recursive $(find -name '*.test.js'  -not -path '**/node_modules/**' )",
@@ -19,7 +19,7 @@
     "ilorm"
   ],
   "dependencies": {
-    "ilorm-constants": "^0.4.1"
+    "ilorm-constants": "^0.5.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

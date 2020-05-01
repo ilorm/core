@@ -2,7 +2,7 @@ const { expect, } = require('chai');
 
 // Create a clean instance of ilorm :
 const Ilorm = require('..').constructor;
-const { Schema } = new Ilorm();
+const { Schema, } = new Ilorm();
 
 describe('spec ilorm', () => {
   describe('Schema default init', () => {
@@ -37,7 +37,7 @@ describe('spec ilorm', () => {
       });
 
       const obj = await schema.init({
-        firstName: 'John'
+        firstName: 'John',
       });
 
       expect(obj).to.deep.equal({
@@ -46,15 +46,17 @@ describe('spec ilorm', () => {
     });
 
     it('Default function will be called', async () => {
+      const DEFAULT_AGE = 10;
+
       const schema = new Schema({
         firstName: Schema.string(),
-        age: Schema.number().default(() => 10),
+        age: Schema.number().default(() => DEFAULT_AGE),
       });
 
       const obj = await schema.init();
 
       expect(obj).to.deep.equal({
-        age: 10,
+        age: DEFAULT_AGE,
       });
     });
   });

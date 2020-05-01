@@ -1,25 +1,28 @@
 const chai = require('chai');
-const sinonChai = require("sinon-chai");
+const sinonChai = require('sinon-chai');
+
 chai.use(sinonChai);
 const sinon = require('sinon');
-const { expect } = chai;
+const { expect, } = chai;
 
 // Create a clean instance of ilorm :
 const Ilorm = require('..').constructor;
 const ilorm = new Ilorm();
-const { Schema, newModel } = ilorm;
+const { Schema, newModel, } = ilorm;
 
 const connector = {
   queryFactory: ({ ParentQuery, }) => ParentQuery,
   modelFactory: ({ ParentModel, }) => ParentModel,
 };
 
-const schema = new Schema({
+const SCHEMA = {
   firstName: Schema.string(),
   lastName: Schema.string(),
   age: Schema.number(),
   createdAt: Schema.date(),
-});
+};
+
+const schema = new Schema(SCHEMA);
 
 const userModel = newModel({
   schema,
@@ -31,26 +34,38 @@ describe('spec ilorm', () => {
   describe('Query', () => {
     it('Should filter with all field of the schema', async () => {
       const onOperator = sinon.spy();
+
       connector.findOne = query => {
         query.queryBuilder({ onOperator, });
       };
 
       const dateQuery = new Date('2018-12-01');
 
+      const AGE_MIN = 25;
+      const AGE_MAX = 35;
+
       await userModel.query()
         .firstName.is('Guillaume')
         .lastName.isNot('Daix')
-        .age.between([25, 35])
+        .age.between([ AGE_MIN, AGE_MAX, ])
         .createdAt.greaterThan(dateQuery)
         .findOne();
 
-      expect(onOperator).to.have.been.calledWith({ field: 'firstName', operator: 'is', value: 'Guillaume' });
-      expect(onOperator).to.have.been.calledWith({ field: 'lastName', operator: 'isNot', value: 'Daix' });
-      expect(onOperator).to.have.been.calledWith({ field: 'age', operator: 'between', value: [25, 35] });
-      expect(onOperator).to.have.been.calledWith({ field: 'createdAt', operator: 'greaterThan', value: dateQuery });
+      expect(onOperator).to.have.been.calledWith({ field: SCHEMA.firstName,
+        operator: 'is',
+        value: 'Guillaume', });
+      expect(onOperator).to.have.been.calledWith({ field: SCHEMA.lastName,
+        operator: 'isNot',
+        value: 'Daix', });
+      expect(onOperator).to.have.been.calledWith({ field: SCHEMA.age,
+        operator: 'between',
+        value: [ AGE_MIN, AGE_MAX, ], });
+      expect(onOperator).to.have.been.calledWith({ field: SCHEMA.createdAt,
+        operator: 'greaterThan',
+        value: dateQuery, });
     });
 
-    it('Should throw an error if the attribute does not exists', async () => {
+    it('Should throw an error if the attribute does not exists', () => {
       const query = userModel.query();
 
       expect(() => query.fakeField).to.throw('The property fakeField does not exists in the defined schema.');
