@@ -5,7 +5,7 @@ chai.use(sinonChai);
 const sinon = require('sinon');
 const { expect, } = chai;
 
-const { SORT_BEHAVIOR, } = require('ilorm-constants').QUERY;
+const { SORT_BEHAVIOR, } = require('../lib/constants').QUERY;
 
 // Create a clean instance of ilorm :
 const Ilorm = require('..').constructor;
