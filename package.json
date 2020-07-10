@@ -9,7 +9,7 @@
     "test": "npm run launchtest",
     "test-win": "set NODE_ENV=test&& mocha --recursive *.test.js lib spec",
     "launchtest": "NODE_ENV=test mocha --recursive $(find -name '*.test.js'  -not -path '**/node_modules/**' )",
-    "cover": "nyc npm test",
+    "cover": "nyc -r lcov npm test",
     "cover-win": "nyc npm run test-win",
     "circle_ci_test": "NODE_ENV=test nyc node_modules/mocha/bin/_mocha --recursive --reporter spec $(find -name '*.test.js'  -not -path '**/node_modules/**' )"
   },
