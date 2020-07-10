@@ -11,9 +11,9 @@ jobs:
       - name: 'Lint'
         run: npm run eslint
       - name: Sleep for 30 seconds
-          uses: jakejarvis/wait-action@master
-          with:
-            time: '10s'
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '10s'
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
