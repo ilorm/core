@@ -10,12 +10,20 @@ jobs:
       - run: npm install
       - name: 'Lint'
         run: npm run eslint
-      - name: Test
-        run: ls
+
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set-up Node.js
+        uses: actions/setup-node@v1
+      - run: npm install
+      - name: 'Cover'
+        run: npm run cover
       - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.COVERALLS_TOKEN }}
+      uses: coverallsapp/github-action@master
+      with:
+       github-token: ${{ secrets.COVERALLS_TOKEN }}
 
   test:
     runs-on: ubuntu-latest
