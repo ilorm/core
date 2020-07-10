@@ -5,6 +5,7 @@ New way to manipulate data with NodeJS.
 [![.github/issues](https://img.shields.io/github/issues/ilorm/core.svg)]()
 [![./LICENCE](https://img.shields.io/github/license/ilorm/core.svg)]()
 [![](https://img.shields.io/librariesio/github/ilorm/core.svg)](https://libraries.io/github/ilorm/core)
+[![Coverage Status](https://coveralls.io/repos/github/ilorm/core/badge.svg?branch=master)](https://coveralls.io/github/ilorm/core?branch=master)
 
 You can found example and documentation on the 
 [Official Ilorm website](https://ilorm.github.io)
