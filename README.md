@@ -11,19 +11,25 @@ You can found example and documentation on the
 [Official Ilorm website](https://ilorm.github.io)
 
 ## Why a new ORM ?
+- Elegant way to separate database from business logic.
+- Easy way to create powerful plugins using the "class" inheritance.
+- Universal database / data source connector (MongoDB, SQL, Redis, REST, CSV...).
 - Use newest feature of ECMAScript (modern javascript).
-- Universal database connector (MongoDB, SQL, Redis, REST, CSV...).
-- Easy way to create powerful plugin using the "class" inheritance.
 
 ## Features
-- Universal connector to bind every kind of database
+- Universal connector to bind every kind of database or data source.
 - Powerful plugin ecosystem
 - Query builder
 - Data validation
 
+
+# Contributing
+Please, refer to our [code of conduct](./CODE_OF_CONDUCT.md) before starting and to our [contributing guide](./CONTRIBUTING.md).
+
 ## Initialize
 
 ## Schema
+With a Schema you define the way your data are represented.
 ```javascript
 const ilorm = require('ilorm');
 const schema = ilorm.schema;
@@ -31,7 +37,7 @@ const schema = ilorm.schema;
 const userSchema = schema.new({
   firstName: schema.String().required(),
   lastName: schema.String().required(),
-  children: schema.Array(schema.reference('User'))
+  children: schema.Array(schema.reference('User')),
   birthday: schema.Date(),
   weight: schema.Number().min(5).max(500)
 });
