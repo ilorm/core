@@ -24,12 +24,6 @@ describe('spec ilorm', () => {
       expect(booleanField).to.be.instanceof(ilorm.Schema.Types.Number);
     });
 
-    it('Should instantiate Reference schema field with factory reference', () => {
-      const booleanField = ilorm.Schema.reference();
-
-      expect(booleanField).to.be.instanceof(ilorm.Schema.Types.Reference);
-    });
-
     it('Should instantiate String schema field with factory string', () => {
       const booleanField = ilorm.Schema.string();
 
