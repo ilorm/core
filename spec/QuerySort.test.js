@@ -45,7 +45,8 @@ describe('spec ilorm', () => {
         .findOne();
 
       expect(onSort).to.have.been.calledWith({ behavior: SORT_BEHAVIOR.ASCENDING,
-        field: SCHEMA.lastName, });
+        field: SCHEMA.lastName,
+        ancestorFields: null, });
     });
 
     it('Could use sort operator to trigger sorting descending per a specific field', async () => {
@@ -60,7 +61,8 @@ describe('spec ilorm', () => {
         .findOne();
 
       expect(onSort).to.have.been.calledWith({ behavior: SORT_BEHAVIOR.DESCENDING,
-        field: SCHEMA.lastName, });
+        field: SCHEMA.lastName,
+        ancestorFields: null, });
     });
   });
 });

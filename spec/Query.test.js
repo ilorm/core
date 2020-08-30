@@ -53,16 +53,20 @@ describe('spec ilorm', () => {
 
       expect(onOperator).to.have.been.calledWith({ field: SCHEMA.firstName,
         operator: 'is',
-        value: 'Guillaume', });
+        value: 'Guillaume',
+        ancestorFields: null, });
       expect(onOperator).to.have.been.calledWith({ field: SCHEMA.lastName,
         operator: 'isNot',
-        value: 'Daix', });
+        value: 'Daix',
+        ancestorFields: null, });
       expect(onOperator).to.have.been.calledWith({ field: SCHEMA.age,
         operator: 'between',
-        value: [ AGE_MIN, AGE_MAX, ], });
+        value: [ AGE_MIN, AGE_MAX, ],
+        ancestorFields: null, });
       expect(onOperator).to.have.been.calledWith({ field: SCHEMA.createdAt,
         operator: 'greaterThan',
-        value: dateQuery, });
+        value: dateQuery,
+        ancestorFields: null, });
     });
 
     it('Should throw an error if the attribute does not exists', () => {

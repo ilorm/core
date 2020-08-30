@@ -70,9 +70,18 @@ describe('spec ilorm', () => {
         .lastName.select()
         .findOne();
 
-      expect(onSelect).to.have.been.calledWith({ field: SCHEMA.firstName, });
-      expect(onSelect).to.have.not.been.calledWith({ field: SCHEMA.age, });
-      expect(onSelect).to.have.been.calledWith({ field: SCHEMA.lastName, });
+      expect(onSelect).to.have.been.calledWith({
+        field: SCHEMA.firstName,
+        ancestorFields: null,
+      });
+      expect(onSelect).to.have.not.been.calledWith({
+        field: SCHEMA.age,
+        ancestorFields: null,
+      });
+      expect(onSelect).to.have.been.calledWith({
+        field: SCHEMA.lastName,
+        ancestorFields: null,
+      });
     });
 
     it('Should use selectOnly to get only one field from a direct query', async () => {
@@ -92,7 +101,10 @@ describe('spec ilorm', () => {
         .findOne();
 
       expect(firstName).to.be.equal('Guillaume');
-      expect(onSelect).to.have.been.calledWith({ field: SCHEMA.firstName, });
+      expect(onSelect).to.have.been.calledWith({
+        field: SCHEMA.firstName,
+        ancestorFields: null,
+      });
     });
 
     it('Should not use selectOnly after have starting using select', () => {

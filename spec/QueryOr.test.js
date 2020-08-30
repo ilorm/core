@@ -57,13 +57,17 @@ describe('spec ilorm', () => {
 
       expect(onOperatorBranchA).to.have.been.calledWith({ field: SCHEMA.firstName,
         operator: 'is',
-        value: 'Guillaume', });
+        value: 'Guillaume',
+        ancestorFields: null,
+      });
       expect(onOperatorBranchB).to.have.been.calledWith({ field: SCHEMA.firstName,
         operator: 'is',
-        value: 'Tom', });
+        value: 'Tom',
+        ancestorFields: null, });
       expect(onOperator).to.have.been.calledWith({ field: SCHEMA.lastName,
         operator: 'is',
-        value: 'Daix', });
+        value: 'Daix',
+        ancestorFields: null, });
     });
     it('Should handle multiple or at the same query level', async () => {
       const onOperatorBranchA = sinon.spy();
@@ -92,16 +96,20 @@ describe('spec ilorm', () => {
 
       expect(onOperatorBranchA).to.have.been.calledWith({ field: SCHEMA.firstName,
         operator: 'is',
-        value: 'Guillaume', });
+        value: 'Guillaume',
+        ancestorFields: null, });
       expect(onOperatorBranchA).to.have.been.calledWith({ field: SCHEMA.lastName,
         operator: 'is',
-        value: 'Daix', });
+        value: 'Daix',
+        ancestorFields: null, });
       expect(onOperatorBranchB).to.have.been.calledWith({ field: SCHEMA.firstName,
         operator: 'is',
-        value: 'Tom', });
+        value: 'Tom',
+        ancestorFields: null, });
       expect(onOperatorBranchB).to.have.been.calledWith({ field: SCHEMA.lastName,
         operator: 'is',
-        value: 'Smith', });
+        value: 'Smith',
+        ancestorFields: null, });
 
     });
   });
