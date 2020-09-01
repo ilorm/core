@@ -6,9 +6,10 @@
   "scripts": {
     "docs": "jsdoc -r /lib -d docs",
     "eslint": "eslint --fix lib/** spec/**",
+    "pretest": "ln -sfn .. ./node_modules/ilorm",
     "test": "npm run launchtest",
-    "test-win": "set NODE_ENV=test&& mocha --recursive *.test.js lib spec",
-    "launchtest": "NODE_ENV=test mocha --recursive $(find -name '*.test.js'  -not -path '**/node_modules/**' )",
+    "test-win": "mocha --recursive *.test.js lib spec",
+    "launchtest": "mocha --recursive $(find -name '*.test.js'  -not -path '**/node_modules/**' )",
     "cover": "nyc -r lcov npm test",
     "cover-win": "nyc npm run test-win",
     "circle_ci_test": "NODE_ENV=test nyc node_modules/mocha/bin/_mocha --recursive --reporter spec $(find -name '*.test.js'  -not -path '**/node_modules/**' )"
@@ -22,9 +23,11 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "ilorm-connector-knex": "^0.2.6",
     "eslint": "^7.4.0",
     "jsdoc": "^3.6.4",
     "mocha": "^8.0.1",
+    "mysql2": "^2.1.0",
     "nyc": "^15.0.1",
     "sinon": "^9.0.2",
     "sinon-chai": "^3.5.0"
