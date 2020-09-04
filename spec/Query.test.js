@@ -35,7 +35,7 @@ describe('spec ilorm', () => {
     it('Should filter with all field of the schema', async () => {
       const onOperator = sinon.spy();
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onOperator, });
       };
 

@@ -32,7 +32,7 @@ describe('spec ilorm', () => {
     it('Could use skip to ignore some fields', async () => {
       const onOptions = sinon.spy();
 
-      connector.find = query => {
+      connector.find = (query) => {
         query.queryBuilder({ onOptions, });
 
         return [];
@@ -51,7 +51,7 @@ describe('spec ilorm', () => {
     it('Could use limit', async () => {
       const onOptions = sinon.spy();
 
-      connector.find = query => {
+      connector.find = (query) => {
         query.queryBuilder({ onOptions, });
 
         return [];

@@ -18,8 +18,6 @@ class StarWarsFixtures {
       RACE_WOOKIE: idGenerator(),
     };
     this.idFieldName = idFieldName;
-
-    Object.assign(this, this.getCharactersFixture(), { data: this.getData(), });
   }
 
   /**
@@ -31,12 +29,12 @@ class StarWarsFixtures {
     return {
       characters: {
         name: 'characters',
-        schema: this.getCharactersSchema(ilorm),
+        schema: new ilorm.Schema(this.getCharactersSchema(ilorm)),
         connector: this.getCharactersConnector(),
       },
       races: {
         name: 'races',
-        schema: this.getRacesSchema(ilorm),
+        schema: new ilorm.Schema(this.getRacesSchema(ilorm)),
         connector: this.getRacesConnector(),
       },
     };
@@ -59,7 +57,6 @@ class StarWarsFixtures {
       }),
       height: Schema.number(),
       gender: Schema.string(),
-      weapons: Schema.array(Schema.string()),
     };
   }
 
@@ -130,7 +127,7 @@ class StarWarsFixtures {
    * Get raw data of races to insert into database before test
    * @returns {Object} Data to insert into database
    */
-  getRaceFixture() {
+  getRacesFixture() {
     return {
       HUMAN: {
         id: this.ID.RACE_HUMAN,

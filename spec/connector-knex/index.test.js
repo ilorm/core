@@ -1,7 +1,6 @@
-const fixtures = require('ilorm-connector-knex/spec/starWars.fixture');
-const TestContext = require('ilorm-connector-knex/spec/helpers');
+const TestContext = require('ilorm-connector-knex/spec/testContext.class');
 
 const testCommon = require('../common');
 
-testCommon(TestContext, fixtures);
+testCommon(TestContext);
 

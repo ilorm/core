@@ -36,7 +36,7 @@ describe('spec ilorm', () => {
     it('Could use sort operator to trigger sorting ascending per a specific field', async () => {
       const onSort = sinon.spy();
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onSort, });
       };
 
@@ -52,7 +52,7 @@ describe('spec ilorm', () => {
     it('Could use sort operator to trigger sorting descending per a specific field', async () => {
       const onSort = sinon.spy();
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onSort, });
       };
 

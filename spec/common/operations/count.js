@@ -1,15 +1,16 @@
 const { expect, } = require('chai');
 
-module.exports = (TestContext, fixtures) => {
-  const { CHEWBACCA, } = fixtures;
+module.exports = (TestContext) => {
   const testContext = new TestContext();
+  const { CHEWBACCA, } = testContext.fixtures.getCharactersFixture();
 
   describe('query.count', () => {
+    after(() => testContext.finalCleanUp());
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
 
     it('Should count all element without filters', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const amount = await Characters.query()
         .count();
@@ -19,7 +20,7 @@ module.exports = (TestContext, fixtures) => {
     });
 
     it('Should count a subset of element if filter is set', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const amount = await Characters.query()
         .name.is(CHEWBACCA.name)

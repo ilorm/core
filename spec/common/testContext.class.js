@@ -10,14 +10,9 @@ class TestContext {
    * isolate from plugin, ...
    * @param {Object} fixtures data to be stored into database
    */
-  constructor(fixtures) {
+  constructor() {
     this.ilorm = new Ilorm();
-    this.fixtures = fixtures;
     this.Models = {};
-
-    const data = fixtures.getData(this.ilorm);
-
-    Object.keys(data).forEach(fixtureName => this.initModel(data[fixtureName]));
   }
 
   /**
@@ -42,8 +37,9 @@ class TestContext {
    * Function called for init database before every test (clean-up, insert fixtures)
    * @return {Promise} Resolve when finished
    */
-  initDb() {
-    return this.fixtures.initDb();
+  async initDb() {
+    await this.fixtures.initDb();
+    await this.initModels();
   }
 
   /**
@@ -52,6 +48,16 @@ class TestContext {
    */
   cleanDb() {
     return this.fixtures.cleanDb();
+  }
+
+  /**
+   * Init models of the context
+   * @returns {void} Return nothing
+   */
+  initModels() {
+    const data = this.fixtures.getData(this.ilorm);
+
+    Object.keys(data).forEach((fixtureName) => this.initModel(data[fixtureName]));
   }
 }
 

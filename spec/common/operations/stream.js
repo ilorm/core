@@ -1,16 +1,17 @@
 
 const { expect, } = require('chai');
 
-module.exports = (TestContext, fixtures) => {
-  const { CHEWBACCA, DARTH_VADOR, LEIA, LUKE, } = fixtures;
+module.exports = (TestContext) => {
+
   const testContext = new TestContext();
+  const { CHEWBACCA, LUKE, LEIA, DARTH_VADOR, } = testContext.fixtures.getCharactersFixture();
 
   describe('query.stream', () => {
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
 
     it('Should stream all elements', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const nameStream = await Characters.query()
         .name.selectOnly()
@@ -19,7 +20,7 @@ module.exports = (TestContext, fixtures) => {
       const names = [];
 
       await new Promise((resolve, reject) => {
-        nameStream.on('data', data => names.push(data));
+        nameStream.on('data', (data) => names.push(data));
 
         nameStream.on('error', reject);
         nameStream.on('end', resolve);
@@ -36,7 +37,7 @@ module.exports = (TestContext, fixtures) => {
     });
 
     it('Should stream a subset of elements', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const nameStream = await Characters.query()
         .name.selectOnly()
@@ -46,7 +47,7 @@ module.exports = (TestContext, fixtures) => {
       const names = [];
 
       await new Promise((resolve, reject) => {
-        nameStream.on('data', data => names.push(data));
+        nameStream.on('data', (data) => names.push(data));
 
         nameStream.on('error', reject);
         nameStream.on('end', resolve);

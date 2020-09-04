@@ -42,13 +42,13 @@ describe('spec ilorm', () => {
         branchB.queryBuilder({ onOperator: onOperatorBranchB, });
       };
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onOperator,
           onOr, });
       };
 
       await userModel.query()
-        .or(branch => {
+        .or((branch) => {
           branch().firstName.is('Guillaume');
           branch().firstName.is('Tom');
         })
@@ -79,16 +79,16 @@ describe('spec ilorm', () => {
         branchB.queryBuilder({ onOperator: onOperatorBranchB, });
       };
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onOr, });
       };
 
       await userModel.query()
-        .or(branch => {
+        .or((branch) => {
           branch().firstName.is('Guillaume');
           branch().firstName.is('Tom');
         })
-        .or(branch => {
+        .or((branch) => {
           branch().lastName.is('Daix');
           branch().lastName.is('Smith');
         })

@@ -278,7 +278,7 @@
     /* =    ECMAScript 6   = */
     /* ===================== */
     "arrow-body-style": ["error", "as-needed"],
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": ["error"],
     "arrow-spacing": "error",
     "constructor-super": "error",
     "generator-star-spacing": "error",

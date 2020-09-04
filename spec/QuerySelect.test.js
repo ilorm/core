@@ -34,7 +34,7 @@ describe('spec ilorm', () => {
     it('Without select, will return all object without applying any select', async () => {
       const onSelect = sinon.spy();
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onSelect, });
 
         return {
@@ -55,7 +55,7 @@ describe('spec ilorm', () => {
     it('Should use select to get only few field from a direct query', async () => {
       const onSelect = sinon.spy();
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onSelect, });
 
         return {
@@ -87,7 +87,7 @@ describe('spec ilorm', () => {
     it('Should use selectOnly to get only one field from a direct query', async () => {
       const onSelect = sinon.spy();
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onSelect, });
 
         return {
@@ -110,7 +110,7 @@ describe('spec ilorm', () => {
     it('Should not use selectOnly after have starting using select', () => {
       const onSelect = sinon.spy();
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onSelect, });
 
         return {
@@ -129,7 +129,7 @@ describe('spec ilorm', () => {
     it('Should not use select after have starting using selectOnly', () => {
       const onSelect = sinon.spy();
 
-      connector.findOne = query => {
+      connector.findOne = (query) => {
         query.queryBuilder({ onSelect, });
 
         return {

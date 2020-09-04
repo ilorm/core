@@ -1,15 +1,15 @@
 const { expect, } = require('chai');
 
-module.exports = (TestContext, fixtures) => {
-  const { CHEWBACCA, } = fixtures;
+module.exports = (TestContext) => {
   const testContext = new TestContext();
+  const { CHEWBACCA, } = testContext.fixtures.getCharactersFixture();
 
   describe('query.find', () => {
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
 
     it('Should find all element without filters', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const elements = await Characters.query()
         .find();
@@ -19,7 +19,7 @@ module.exports = (TestContext, fixtures) => {
     });
 
     it('Should find a subset of element if filter is set', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const elements = await Characters.query()
         .name.is(CHEWBACCA.name)
@@ -37,7 +37,7 @@ module.exports = (TestContext, fixtures) => {
     afterEach(() => testContext.cleanDb());
 
     it('Should find only one element without filters', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const element = await Characters.query()
         .findOne();
@@ -47,7 +47,7 @@ module.exports = (TestContext, fixtures) => {
     });
 
     it('Should find a given element if filter is set', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const element = await Characters.query()
         .name.is(CHEWBACCA.name)
@@ -57,7 +57,7 @@ module.exports = (TestContext, fixtures) => {
     });
 
     it('Should return null if no element match', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const element = await Characters.query()
         .name.is('fake name')

@@ -1,17 +1,16 @@
 
 const { expect, } = require('chai');
 
-module.exports = (TestContext, fixtures) => {
-  const { CHEWBACCA, DARTH_VADOR, LEIA, LUKE, } = fixtures;
+module.exports = (TestContext) => {
   const testContext = new TestContext();
-
+  const { CHEWBACCA, DARTH_VADOR, LEIA, LUKE, } = testContext.fixtures.getCharactersFixture();
 
   describe('query.remove', () => {
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
 
     it('Should remove all elements', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const amountRemoved = await Characters.query()
         .remove();
@@ -26,7 +25,7 @@ module.exports = (TestContext, fixtures) => {
     });
 
     it('Should remove a subset of element if filter is set', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const amountRemoved = await Characters.query()
         .name.is(CHEWBACCA.name)
@@ -54,7 +53,7 @@ module.exports = (TestContext, fixtures) => {
     afterEach(() => testContext.cleanDb());
 
     it('Should remove one elements without filter', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const amountRemoved = await Characters.query()
         .removeOne();
@@ -69,7 +68,7 @@ module.exports = (TestContext, fixtures) => {
     });
 
     it('Should remove one element if filter is set', async () => {
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const amountRemoved = await Characters.query()
         .name.is(CHEWBACCA.name)
@@ -91,8 +90,7 @@ module.exports = (TestContext, fixtures) => {
     });
 
     it('Should remove nothing if filter target an unknow value', async () => {
-
-      const Characters = await testContext.getCharactersModel();
+      const Characters = testContext.Models.characters;
 
       const amountRemoved = await Characters.query()
         .name.is('a non star wars character')
