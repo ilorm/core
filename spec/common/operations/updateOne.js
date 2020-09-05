@@ -1,7 +1,7 @@
 const { expect, } = require('chai');
 
 module.exports = (TestContext) => {
-  const testContext = new TestContext();
+  const testContext = TestContext.getStarWars();
   const { CHEWBACCA, LUKE, LEIA, DARTH_VADOR, } = testContext.fixtures.getCharactersFixture();
 
 

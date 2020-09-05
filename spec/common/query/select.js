@@ -7,7 +7,7 @@ module.exports = (TestContext) => {
     let testContext;
 
     before(() => {
-      testContext = new TestContext();
+      testContext = TestContext.getStarWars();
     });
     after(() => testContext.finalCleanUp());
     beforeEach(() => testContext.initDb());
@@ -44,7 +44,7 @@ module.exports = (TestContext) => {
     let testContext;
 
     before(() => {
-      testContext = new TestContext();
+      testContext = TestContext.getStarWars();
     });
     after(() => testContext.finalCleanUp());
     beforeEach(() => testContext.initDb());

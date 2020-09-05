@@ -2,7 +2,7 @@
 const { expect, } = require('chai');
 
 module.exports = (TestContext) => {
-  const testContext = new TestContext();
+  const testContext = TestContext.getStarWars();
   const { CHEWBACCA, DARTH_VADOR, LEIA, LUKE, } = testContext.fixtures.getCharactersFixture();
 
   describe('query.remove', () => {
