@@ -14,6 +14,7 @@ class InvoicesFixture {
       },
       INVOICES: {
         GUILLAUME_1: idGenerator(),
+        GUILLAUME_2: idGenerator(),
       },
     };
     this.idFieldName = idFieldName;
@@ -36,13 +37,18 @@ class InvoicesFixture {
         schema: new ilorm.Schema(this.getCustomersSchema(ilorm)),
         connector: this.getCustomersConnector(),
       },
+      accounts: {
+        name: 'accounts',
+        schema: new ilorm.Schema(this.getAccountsSchema(ilorm)),
+        connector: this.getAccountsConnector(),
+      },
     };
   }
 
   /**
    * Inject ilorm and get schema associate with invoices
    * @param {Object} ilorm Inject ilorm for creating schema
-   * @returns {{raceId: (Field|*), gender: *, name: *, id: Field, weapons: *, height: (void|*)}} The schema
+   * @returns {Object} The schema
    */
   getInvoicesSchema(ilorm) {
     const { Schema, } = ilorm;
@@ -63,7 +69,7 @@ class InvoicesFixture {
   /**
    * Inject ilorm and get schema associate with customers
    * @param {Object} ilorm Inject ilorm for creating schema
-   * @returns {{name: *, id: Field}} The schema
+   * @returns {Object} The schema
    */
   getCustomersSchema(ilorm) {
     const { Schema, } = ilorm;
@@ -72,6 +78,24 @@ class InvoicesFixture {
       id: Schema.string().primary(),
       firstName: Schema.string(),
       lastName: Schema.string(),
+    };
+  }
+
+  /**
+   * Get schema of an account
+   * @param {Object} ilorm Inject ilorm for creating schema
+   * @returns {Object} The schema
+   */
+  getAccountsSchema(ilorm) {
+    const { Schema, } = ilorm;
+
+    return {
+      customerId: Schema.string().primary()
+        .reference({
+          referencedModel: 'customers',
+          referencedField: 'id',
+        }),
+      balance: Schema.number(),
     };
   }
 
@@ -92,6 +116,14 @@ class InvoicesFixture {
   }
 
   /**
+   * Get connector associate with accounts
+   * @returns {Connector} Need to be overload by connector
+   */
+  getAccountsConnector() {
+    throw new Error('Need to be overload for specific testing');
+  }
+
+  /**
    * Get raw data of invoices to insert into database before test
    * @returns {Object} Data to insert into database
    */
@@ -104,6 +136,14 @@ class InvoicesFixture {
         isPaid: false,
         paidAt: null,
         amount: 300,
+      },
+      INVOICE_GUILLAUME_2: {
+        [this.idFieldName]: this.ID.INVOICES.GUILLAUME_2,
+        customerId: this.ID.CUSTOMERS.GUILLAUME,
+        createdAt: new Date('2019-02-05'),
+        isPaid: false,
+        paidAt: null,
+        amount: 150,
       },
     };
   }
@@ -118,6 +158,19 @@ class InvoicesFixture {
         [this.idFieldName]: this.ID.CUSTOMERS.GUILLAUME,
         firstName: 'Guillaume',
         lastName: 'Daix',
+      },
+    };
+  }
+
+  /**
+   * Get raw data of customers to insert into database before test
+   * @returns {Object} Data to insert into database
+   */
+  getAccountsFixture() {
+    return {
+      GUILLAUME: {
+        [this.idFieldName]: this.ID.CUSTOMERS.GUILLAUME,
+        balance: 300,
       },
     };
   }
