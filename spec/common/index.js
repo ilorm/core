@@ -11,6 +11,8 @@ const queryPagination = require('./query/pagination');
 const querySelect = require('./query/select');
 const querySorting = require('./query/sorting');
 
+const transaction = require('./extra/transaction');
+
 module.exports = (TestContext) => {
   operationCount(TestContext);
   operationFind(TestContext);
@@ -24,5 +26,7 @@ module.exports = (TestContext) => {
   queryPagination(TestContext);
   querySelect(TestContext);
   querySorting(TestContext);
+
+  transaction(TestContext);
 };
 
