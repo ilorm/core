@@ -169,7 +169,7 @@ class InvoicesFixture {
   getAccountsFixture() {
     return {
       GUILLAUME: {
-        [this.idFieldName]: this.ID.CUSTOMERS.GUILLAUME,
+        customerId: this.ID.CUSTOMERS.GUILLAUME,
         balance: 300,
       },
     };
