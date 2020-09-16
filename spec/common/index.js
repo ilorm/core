@@ -10,6 +10,7 @@ const queryOr = require('./query/or');
 const queryPagination = require('./query/pagination');
 const querySelect = require('./query/select');
 const querySorting = require('./query/sorting');
+const queryGroup = require('./query/group');
 
 const transaction = require('./extra/transaction');
 
@@ -26,6 +27,7 @@ module.exports = (TestContext) => {
   queryPagination(TestContext);
   querySelect(TestContext);
   querySorting(TestContext);
+  queryGroup(TestContext);
 
   transaction(TestContext);
 };
