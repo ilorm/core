@@ -1,6 +1,12 @@
 const { expect, } = require('chai');
 
-const CONCURENCY_RISK_TTL = 5;
+const ENFORCE_INIT_SECOND = 5;
+const CONCURRENCY_RISK_TTL = 25;
+
+// eslint-disable-next-line require-jsdoc
+function sleep(ttl) {
+  return new Promise((resolve) => setTimeout(resolve, ttl));
+}
 
 module.exports = (TestContext) => {
   const testContext = TestContext.getInvoices();
@@ -33,7 +39,7 @@ module.exports = (TestContext) => {
                 .findOne();
 
               // Wait during waitTime during the transaction to create concurrency issue;
-              await new Promise(((resolve) => setTimeout(resolve, waitTime)));
+              await sleep(waitTime);
 
               const userAccount = await Accounts.query()
                 .customerId.is(invoice.customerId)
@@ -57,8 +63,13 @@ module.exports = (TestContext) => {
 
           // First time we try to paid the invoice; it will work;
           expect(await Promise.all([
-            paidInvoice(CONCURENCY_RISK_TTL),
-            paidInvoice(0),
+            paidInvoice(CONCURRENCY_RISK_TTL),
+            async () => {
+              // enforce the the first paid invoice have reach lock process before start;
+              await sleep(ENFORCE_INIT_SECOND);
+
+              return paidInvoice(0);
+            },
           ])).to.deep.equal([ true, false, ]);
         }
       });
@@ -80,7 +91,7 @@ module.exports = (TestContext) => {
               .findOne();
 
             // Wait during waitTime during the transaction to create concurrency issue;
-            await new Promise(((resolve) => setTimeout(resolve, waitTime)));
+            await sleep(waitTime);
 
             const userAccount = await Accounts.query()
               .transaction(transaction)
@@ -105,8 +116,13 @@ module.exports = (TestContext) => {
 
         // First time we try to paid the invoice; it will work;
         expect(await Promise.all([
-          paidInvoice(CONCURENCY_RISK_TTL),
-          paidInvoice(0),
+          paidInvoice(CONCURRENCY_RISK_TTL),
+          async () => {
+            // enforce the the first paid invoice have reach lock process before start;
+            await sleep(ENFORCE_INIT_SECOND);
+
+            return paidInvoice(0);
+          },
         ])).to.deep.equal([ true, false, ]);
       });
 
@@ -128,7 +144,7 @@ module.exports = (TestContext) => {
             .findOne();
 
           // Wait during waitTime during the transaction to create concurrency issue;
-          await new Promise(((resolve) => setTimeout(resolve, waitTime)));
+          await sleep(waitTime);
 
           const userAccount = await Accounts.query()
             .transaction(transaction)
@@ -155,8 +171,13 @@ module.exports = (TestContext) => {
 
         // First time we try to paid the invoice; it will work;
         expect(await Promise.all([
-          paidInvoice(CONCURENCY_RISK_TTL),
-          paidInvoice(0),
+          paidInvoice(CONCURRENCY_RISK_TTL),
+          async () => {
+            // enforce the the first paid invoice have reach lock process before start;
+            await sleep(ENFORCE_INIT_SECOND);
+
+            return paidInvoice(0);
+          },
         ])).to.deep.equal([ true, false, ]);
       });
     });
