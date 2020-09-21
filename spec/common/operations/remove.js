@@ -2,12 +2,13 @@
 const { expect, } = require('chai');
 
 module.exports = (TestContext) => {
-  const testContext = TestContext.getStarWars();
-  const { CHEWBACCA, DARTH_VADOR, LEIA, LUKE, } = testContext.fixtures.getCharactersFixture();
-
   describe('query.remove', () => {
+    const testContext = TestContext.getStarWars();
+    const { CHEWBACCA, DARTH_VADOR, LUKE, LEIA, } = testContext.fixtures.getCharactersFixture();
+
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
+    after(() => testContext.finalCleanUp());
 
     it('Should remove all elements', async () => {
       const Characters = testContext.Models.characters;
@@ -49,8 +50,12 @@ module.exports = (TestContext) => {
   });
 
   describe('query.removeOne', () => {
+    const testContext = TestContext.getStarWars();
+    const { CHEWBACCA, DARTH_VADOR, LUKE, LEIA, } = testContext.fixtures.getCharactersFixture();
+
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
+    after(() => testContext.finalCleanUp());
 
     it('Should remove one elements without filter', async () => {
       const Characters = testContext.Models.characters;

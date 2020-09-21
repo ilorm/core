@@ -9,6 +9,7 @@ module.exports = (TestContext) => {
   describe('query.stream', () => {
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
+    after(() => testContext.finalCleanUp());
 
     it('Should stream all elements', async () => {
       const Characters = testContext.Models.characters;

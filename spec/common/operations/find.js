@@ -1,12 +1,13 @@
 const { expect, } = require('chai');
 
 module.exports = (TestContext) => {
-  const testContext = TestContext.getStarWars();
-  const { CHEWBACCA, } = testContext.fixtures.getCharactersFixture();
-
   describe('query.find', () => {
+    const testContext = TestContext.getStarWars();
+    const { CHEWBACCA, } = testContext.fixtures.getCharactersFixture();
+
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
+    after(() => testContext.finalCleanUp());
 
     it('Should find all element without filters', async () => {
       const Characters = testContext.Models.characters;
@@ -33,8 +34,12 @@ module.exports = (TestContext) => {
   });
 
   describe('query.findOne', () => {
+    const testContext = TestContext.getStarWars();
+    const { CHEWBACCA, } = testContext.fixtures.getCharactersFixture();
+
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
+    after(() => testContext.finalCleanUp());
 
     it('Should find only one element without filters', async () => {
       const Characters = testContext.Models.characters;
