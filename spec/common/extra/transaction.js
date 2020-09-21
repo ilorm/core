@@ -64,12 +64,12 @@ module.exports = (TestContext) => {
           // First time we try to paid the invoice; it will work;
           expect(await Promise.all([
             paidInvoice(CONCURRENCY_RISK_TTL),
-            async () => {
+            (async () => {
               // enforce the the first paid invoice have reach lock process before start;
               await sleep(ENFORCE_INIT_SECOND);
 
               return paidInvoice(0);
-            },
+            })(),
           ])).to.deep.equal([ true, false, ]);
         }
       });
@@ -117,12 +117,12 @@ module.exports = (TestContext) => {
         // First time we try to paid the invoice; it will work;
         expect(await Promise.all([
           paidInvoice(CONCURRENCY_RISK_TTL),
-          async () => {
+          (async () => {
             // enforce the the first paid invoice have reach lock process before start;
             await sleep(ENFORCE_INIT_SECOND);
 
             return paidInvoice(0);
-          },
+          })(),
         ])).to.deep.equal([ true, false, ]);
       });
 
@@ -172,12 +172,12 @@ module.exports = (TestContext) => {
         // First time we try to paid the invoice; it will work;
         expect(await Promise.all([
           paidInvoice(CONCURRENCY_RISK_TTL),
-          async () => {
+          (async () => {
             // enforce the the first paid invoice have reach lock process before start;
             await sleep(ENFORCE_INIT_SECOND);
 
             return paidInvoice(0);
-          },
+          })(),
         ])).to.deep.equal([ true, false, ]);
       });
     });
