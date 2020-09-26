@@ -12,6 +12,7 @@ const querySelect = require('./query/select');
 const querySorting = require('./query/sorting');
 
 const transaction = require('./extra/transaction');
+const modelId = require('./extra/modelId');
 
 module.exports = (TestContext) => {
   operationCount(TestContext);
@@ -28,5 +29,6 @@ module.exports = (TestContext) => {
   querySorting(TestContext);
 
   transaction(TestContext);
+  modelId(TestContext);
 };
 
