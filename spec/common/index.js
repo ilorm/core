@@ -1,3 +1,6 @@
+const modelId = require('./base/modelId');
+const model = require('./base/model');
+
 const operationCount = require('./operations/count');
 const operationFind = require('./operations/find');
 const operationRemove = require('./operations/remove');
@@ -12,9 +15,11 @@ const querySelect = require('./query/select');
 const querySorting = require('./query/sorting');
 
 const transaction = require('./extra/transaction');
-const modelId = require('./extra/modelId');
 
 module.exports = (TestContext) => {
+  modelId(TestContext);
+  model(TestContext);
+
   operationCount(TestContext);
   operationFind(TestContext);
   operationRemove(TestContext);
@@ -29,6 +34,5 @@ module.exports = (TestContext) => {
   querySorting(TestContext);
 
   transaction(TestContext);
-  modelId(TestContext);
 };
 
