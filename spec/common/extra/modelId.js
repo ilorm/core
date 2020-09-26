@@ -12,9 +12,9 @@ module.exports = (TestContext) => {
     it('Should instantiate id from direct id or by field', () => {
       const Customers = testContext.Models.customers;
 
-      const CUSTOMER_ID_A = Customers.id(testContext.fixtures.ID.GUILLAUME);
+      const CUSTOMER_ID_A = Customers.id(testContext.fixtures.ID.CUSTOMERS.GUILLAUME);
       const CUSTOMER_ID_B = Customers.id({
-        [testContext.idFieldName]: testContext.fixtures.ID.GUILLAUME,
+        [testContext.fixtures.idFieldName]: testContext.fixtures.ID.CUSTOMERS.GUILLAUME,
       });
 
       expect(CUSTOMER_ID_A).to.deep.equal(CUSTOMER_ID_B);
@@ -23,7 +23,7 @@ module.exports = (TestContext) => {
     it('Should resolve instance from id', async () => {
       const Customers = testContext.Models.customers;
 
-      const CUSTOMER_ID = Customers.id(testContext.fixtures.ID.GUILLAUME);
+      const CUSTOMER_ID = Customers.id(testContext.fixtures.ID.CUSTOMERS.GUILLAUME);
 
       const customer = await CUSTOMER_ID.resolveInstance();
 
