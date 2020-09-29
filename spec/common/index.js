@@ -1,38 +1,61 @@
-const modelId = require('./base/modelId');
-const model = require('./base/model');
+/* eslint-disable global-require */
+const TESTS = {
+  base: {
+    model: require('./base/model'),
+    modelId: require('./base/modelId'),
+  },
+  operations: {
+    count: require('./operations/count'),
+    find: require('./operations/find'),
+    remove: require('./operations/remove'),
+    stream: require('./operations/stream'),
+    update: require('./operations/update'),
+    updateOne: require('./operations/updateOne'),
+  },
+  query: {
+    number: require('./query/number'),
+    or: require('./query/or'),
+    pagination: require('./query/pagination'),
+    select: require('./query/select'),
+    sorting: require('./query/sorting'),
+  },
+  extra: {
+    transaction: require('./extra/transaction'),
+  },
+};
 
-const operationCount = require('./operations/count');
-const operationFind = require('./operations/find');
-const operationRemove = require('./operations/remove');
-const operationStream = require('./operations/stream');
-const operationUpdate = require('./operations/update');
-const operationUpdateOne = require('./operations/updateOne');
+const TEST_DEFAULT_CONFIG = {
+  base: {
+    model: true,
+    modelId: true,
+  },
+  operations: {
+    count: true,
+    find: true,
+    remove: true,
+    stream: true,
+    update: true,
+    updateOne: true,
+  },
+  query: {
+    number: true,
+    or: true,
+    pagination: true,
+    select: true,
+    sorting: true,
+  },
+  extra: {
+    transaction: true,
+  },
+};
 
-const queryNumber = require('./query/number');
-const queryOr = require('./query/or');
-const queryPagination = require('./query/pagination');
-const querySelect = require('./query/select');
-const querySorting = require('./query/sorting');
-
-const transaction = require('./extra/transaction');
-
-module.exports = (TestContext) => {
-  modelId(TestContext);
-  model(TestContext);
-
-  operationCount(TestContext);
-  operationFind(TestContext);
-  operationRemove(TestContext);
-  operationStream(TestContext);
-  operationUpdate(TestContext);
-  operationUpdateOne(TestContext);
-
-  queryNumber(TestContext);
-  queryOr(TestContext);
-  queryPagination(TestContext);
-  querySelect(TestContext);
-  querySorting(TestContext);
-
-  transaction(TestContext);
+module.exports = (TestContext, config = TEST_DEFAULT_CONFIG) => {
+  for (const category of Object.keys(config)) {
+    for (const key of Object.keys(config[category])) {
+      if (config[category][key]) {
+        TESTS[category][key](TestContext);
+      }
+    }
+  }
 };
 
