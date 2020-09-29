@@ -59,7 +59,7 @@ class InvoicesFixture {
         referencedModel: 'customers',
         referencedField: 'id',
       }),
-      createdAt: Schema.date().default(Date.now),
+      createdAt: Schema.date().default(() => Date.now()),
       paidAt: Schema.date(),
       isPaid: Schema.boolean().default(false),
       amount: Schema.number(),
