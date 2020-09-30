@@ -13,6 +13,7 @@ const TESTS = {
     updateOne: require('./operations/updateOne'),
   },
   query: {
+    linkedWith: require('./query/linkedWith'),
     number: require('./query/number'),
     or: require('./query/or'),
     pagination: require('./query/pagination'),
@@ -38,6 +39,7 @@ const TEST_DEFAULT_CONFIG = {
     updateOne: true,
   },
   query: {
+    linkedWith: true,
     number: true,
     or: true,
     pagination: true,

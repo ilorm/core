@@ -2,6 +2,7 @@ const { expect, } = require('chai');
 
 module.exports = (TestContext) => {
   const testContext = TestContext.getInvoices();
+  const { fixtures, } = testContext;
 
   describe('query.restrictTo', () => {
     beforeEach(() => testContext.initDb());
@@ -12,15 +13,15 @@ module.exports = (TestContext) => {
       const Invoices = testContext.Models.invoices;
       const Customers = testContext.Models.customers;
 
-      const CUSTOMER_ID = Customers.id(testContext.GUILLAUME);
+      const CUSTOMER_ID = Customers.id(fixtures.ID.CUSTOMERS.GUILLAUME);
 
       const invoices = await Invoices.query()
         .linkedWith(CUSTOMER_ID)
         .find();
 
-      expect(invoices).to.deep.includes([
-        testContext.getInvoicesFixture().INVOICE_GUILLAUME_1,
-        testContext.getInvoicesFixture().INVOICE_GUILLAUME_2,
+      expect(invoices).to.deep.members([
+        fixtures.getInvoicesFixture().INVOICE_GUILLAUME_1,
+        fixtures.getInvoicesFixture().INVOICE_GUILLAUME_2,
       ]);
     });
 
@@ -30,16 +31,16 @@ module.exports = (TestContext) => {
 
       const customer = await Customers.query()
         // eslint-disable-next-line
-        [testContext.idFieldName].is(testContext.ID.GUILLAUME)
+        [fixtures.idFieldName].is(fixtures.ID.CUSTOMERS.GUILLAUME)
         .findOne();
 
       const invoices = await Invoices.query()
         .linkedWith(customer)
         .find();
 
-      expect(invoices).to.deep.includes([
-        testContext.getInvoicesFixture().INVOICE_GUILLAUME_1,
-        testContext.getInvoicesFixture().INVOICE_GUILLAUME_2,
+      expect(invoices).to.deep.members([
+        fixtures.getInvoicesFixture().INVOICE_GUILLAUME_1,
+        fixtures.getInvoicesFixture().INVOICE_GUILLAUME_2,
       ]);
     });
 
@@ -51,13 +52,13 @@ module.exports = (TestContext) => {
         .linkedWith(
           Customers.query()
           // eslint-disable-next-line
-          [testContext.idFieldName].is(testContext.ID.GUILLAUME)
+          [fixtures.idFieldName].is(fixtures.ID.CUSTOMERS.GUILLAUME)
         )
         .find();
 
-      expect(invoices).to.deep.includes([
-        testContext.getInvoicesFixture().INVOICE_GUILLAUME_1,
-        testContext.getInvoicesFixture().INVOICE_GUILLAUME_2,
+      expect(invoices).to.deep.members([
+        fixtures.getInvoicesFixture().INVOICE_GUILLAUME_1,
+        fixtures.getInvoicesFixture().INVOICE_GUILLAUME_2,
       ]);
     });
   });
