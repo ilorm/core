@@ -4,7 +4,7 @@ module.exports = (TestContext) => {
   const testContext = TestContext.getInvoices();
   const { fixtures, } = testContext;
 
-  describe('query.restrictTo', () => {
+  describe('query.linkedWith', () => {
     beforeEach(() => testContext.initDb());
     afterEach(() => testContext.cleanDb());
     after(() => testContext.finalCleanUp());
