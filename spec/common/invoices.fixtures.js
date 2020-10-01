@@ -11,10 +11,14 @@ class InvoicesFixture {
     this.ID = {
       CUSTOMERS: {
         GUILLAUME: idGenerator(),
+        BENJAMIN: idGenerator(),
+        FLORINE: idGenerator(),
       },
       INVOICES: {
         GUILLAUME_1: idGenerator(),
         GUILLAUME_2: idGenerator(),
+        BENJAMIN_1: idGenerator(),
+        FLORINE_1: idGenerator(),
       },
     };
     this.idFieldName = idFieldName;
@@ -145,6 +149,22 @@ class InvoicesFixture {
         paidAt: null,
         amount: 150,
       },
+      INVOICE_BENJAMIN_1: {
+        [this.idFieldName]: this.ID.INVOICES.BENJAMIN_1,
+        customerId: this.ID.CUSTOMERS.BENJAMIN,
+        createdAt: new Date('2017-01-01'),
+        isPaid: false,
+        paidAt: null,
+        amount: 99,
+      },
+      INVOICE_FLORINE_1: {
+        [this.idFieldName]: this.ID.INVOICES.FLORINE_1,
+        customerId: this.ID.CUSTOMERS.FLORINE,
+        createdAt: new Date('2020-11-12'),
+        isPaid: false,
+        paidAt: null,
+        amount: 399,
+      },
     };
   }
 
@@ -159,6 +179,16 @@ class InvoicesFixture {
         firstName: 'Guillaume',
         lastName: 'Daix',
       },
+      BENJAMIN: {
+        [this.idFieldName]: this.ID.CUSTOMERS.BENJAMIN,
+        firstName: 'Benjamin',
+        lastName: 'Daix',
+      },
+      FLORINE: {
+        [this.idFieldName]: this.ID.CUSTOMERS.FLORINE,
+        firstName: 'Florine',
+        lastName: 'Jojo',
+      },
     };
   }
 
@@ -171,6 +201,14 @@ class InvoicesFixture {
       GUILLAUME: {
         customerId: this.ID.CUSTOMERS.GUILLAUME,
         balance: 300,
+      },
+      BENJAMIN: {
+        customerId: this.ID.CUSTOMERS.BENJAMIN,
+        balance: 0,
+      },
+      FLORINE: {
+        customerId: this.ID.CUSTOMERS.FLORINE,
+        balance: 1200,
       },
     };
   }
