@@ -135,10 +135,7 @@ module.exports = (TestContext) => {
         expect(totalInvoices).to.equal(2);
       });
 
-      it('Should work with stream', async function streamTest() {
-        // eslint-disable-next-line no-magic-numbers
-        this.timeout(5000);
-
+      it('Should work with stream', async () => {
         const Invoices = testContext.Models.invoices;
         const Customers = testContext.Models.customers;
 
@@ -155,9 +152,9 @@ module.exports = (TestContext) => {
 
         await new Promise((resolve, reject) => {
           invoicesStream.on('close', resolve);
+          invoicesStream.on('end', resolve);
           invoicesStream.on('error', reject);
         });
-
 
         expect(result).to.deep.members([
           fixtures.getInvoicesFixture().INVOICE_GUILLAUME_1,
