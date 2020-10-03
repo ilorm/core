@@ -135,7 +135,7 @@ module.exports = (TestContext) => {
         expect(totalInvoices).to.equal(2);
       });
 
-      it('Should work with stream', async () => {
+      it('Should work with stream', async function streamTest() {
         // eslint-disable-next-line no-magic-numbers
         this.timeout(5000);
 
