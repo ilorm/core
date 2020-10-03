@@ -135,33 +135,33 @@ module.exports = (TestContext) => {
         expect(totalInvoices).to.equal(2);
       });
 
-      // eslint-disable-next-line no-constant-condition
-      if (false) {
-        it('Should work with stream', async () => {
-          const Invoices = testContext.Models.invoices;
-          const Customers = testContext.Models.customers;
+      it('Should work with stream', async () => {
+        const Invoices = testContext.Models.invoices;
+        const Customers = testContext.Models.customers;
 
-          const invoicesStream = await Invoices.query()
-            .linkedWith(
-              Customers.query()
-                .lastName.is('Daix')
-            )
-            .stream();
+        const invoicesStream = await Invoices.query()
+          .linkedWith(
+            Customers.query()
+              .lastName.is('Daix')
+          )
+          .stream();
 
-          expect([
-            invoicesStream.read(),
-            invoicesStream.read(),
-            invoicesStream.read(),
-            invoicesStream.read(),
-          ]).to.deep.members([
-            fixtures.getInvoicesFixture().INVOICE_GUILLAUME_1,
-            fixtures.getInvoicesFixture().INVOICE_GUILLAUME_2,
-            fixtures.getInvoicesFixture().INVOICE_BENJAMIN_1,
-            null,
-          ]);
+        const result = [];
 
+        invoicesStream.on('data', (invoice) => result.push(invoice));
+
+        await new Promise((resolve, reject) => {
+          invoicesStream.on('close', resolve);
+          invoicesStream.on('error', reject);
         });
-      }
+
+
+        expect(result).to.deep.members([
+          fixtures.getInvoicesFixture().INVOICE_GUILLAUME_1,
+          fixtures.getInvoicesFixture().INVOICE_GUILLAUME_2,
+          fixtures.getInvoicesFixture().INVOICE_BENJAMIN_1,
+        ]);
+      });
     });
   });
 };
