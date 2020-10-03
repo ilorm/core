@@ -7,7 +7,10 @@ module.exports = (TestContext) => {
   describe('query.linkedWith', () => {
 
     describe('parameters', () => {
-      beforeEach(() => testContext.initDb());
+      beforeEach(async () => {
+        await testContext.initDb();
+        await testContext.ilorm.Relation.waitForRelationToInit();
+      });
       afterEach(() => testContext.cleanDb());
       after(() => testContext.finalCleanUp());
 
