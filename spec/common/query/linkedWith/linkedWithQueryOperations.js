@@ -136,6 +136,9 @@ module.exports = (TestContext) => {
       });
 
       it('Should work with stream', async () => {
+        // eslint-disable-next-line no-magic-numbers
+        this.timeout(5000);
+
         const Invoices = testContext.Models.invoices;
         const Customers = testContext.Models.customers;
 
