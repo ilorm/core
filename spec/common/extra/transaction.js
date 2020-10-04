@@ -1,4 +1,5 @@
 const { expect, } = require('chai');
+const { AsyncLocalStorage, } = require('async_hooks');
 
 const ENFORCE_INIT_SECOND = 5;
 const CONCURRENCY_RISK_TTL = 25;
@@ -18,13 +19,9 @@ module.exports = (TestContext) => {
       afterEach(() => testContext.cleanDb());
 
 
-      it('Syntax Transaction.run(() => {', async () => {
-
-        // eslint-disable-next-line global-require
-        const { AsyncLocalStorage, } = require('async_hooks');
-
-        // Check if async local storage is available;
-        if (AsyncLocalStorage) {
+      if (AsyncLocalStorage) {
+        it('Syntax Transaction.run(() => {', async () => {
+          // Check if async local storage is available;
           const Invoices = testContext.Models.invoices;
           const Accounts = testContext.Models.accounts;
           const { Transaction, } = testContext.ilorm;
@@ -71,8 +68,8 @@ module.exports = (TestContext) => {
               return paidInvoice(0);
             })(),
           ])).to.deep.equal([ true, false, ]);
-        }
-      });
+        });
+      }
 
 
       it('Syntax Transaction.run((transaction) => {', async () => {
