@@ -33,6 +33,20 @@ module.exports = (TestContext) => {
       });
     });
 
+    it('Delete a property should reset the value to null', async () => {
+      const Invoices = testContext.Models.invoices;
+
+      const ilormInvoice = await Invoices.query()
+        .id.is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
+        .findOne();
+
+      expect(ilormInvoice.customerId).to.be.equal(testContext.fixtures.ID.CUSTOMERS.BENJAMIN);
+
+      delete ilormInvoice.customerId;
+
+      expect(ilormInvoice.customerId).to.be.equal(null);
+    });
+
     it('Should insert model into database', async () => {
       Date.now = () => FAKE_DATE;
 
