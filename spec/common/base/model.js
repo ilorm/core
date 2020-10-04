@@ -60,6 +60,22 @@ module.exports = (TestContext) => {
       });
     });
 
+    it('Should remove instance from the database', async () => {
+      const Invoices = testContext.Models.invoices;
+
+      const ilormInvoice = await Invoices.query()
+        .id.is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
+        .findOne();
+
+      await ilormInvoice.remove();
+
+      const exists = await Invoices.query()
+        .id.is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
+        .findOne();
+
+      expect(exists).to.be.equal(null);
+    });
+
     it('Model.getJSON return a copy of the object as a non Ilorm Model', async () => {
       const Invoices = testContext.Models.invoices;
 
