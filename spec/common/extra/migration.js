@@ -1,6 +1,8 @@
 const { expect, } = require('chai');
 
-const TIME = 1601825250;
+const TIME_V1 = 1581125250;
+const TIME_V2 = 1601825250;
+const TIME_V3 = 1611825250;
 
 module.exports = (TestContext) => {
   const testContext = TestContext.getInvoices();
@@ -18,6 +20,7 @@ module.exports = (TestContext) => {
 
     it('API up / down should work', () => {
       userSchema
+        .version(TIME_V3)
         .up((UserModel) => {
           UserModel.query()
             .stream()
@@ -42,11 +45,19 @@ module.exports = (TestContext) => {
     });
 
     it('API version should work', () => {
-      userSchema.version(TIME, {
+      userSchema.version(TIME_V2, {
         id: Schema.string(),
         name: Schema.string(),
         age: Schema.string(),
-      });
+      })
+        .version(TIME_V1, {
+          id: Schema.string(),
+          name: Schema.string(),
+        });
+    });
+
+    it('Should apply past schema', () => {
+
     });
 
   });
