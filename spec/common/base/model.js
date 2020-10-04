@@ -59,5 +59,20 @@ module.exports = (TestContext) => {
         amount: 300,
       });
     });
+
+    it('Model.getJSON return a copy of the object as a non Ilorm Model', async () => {
+      const Invoices = testContext.Models.invoices;
+
+      const ilormInvoice = await Invoices.query()
+        .id.is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
+        .findOne();
+
+      const jsonInvoice = ilormInvoice.getJson();
+
+      expect(jsonInvoice).to.deep.equal(ilormInvoice);
+      expect(jsonInvoice).to.not.be.an.instanceof(Invoices);
+      expect(ilormInvoice).to.be.an.instanceof(Invoices);
+
+    });
   });
 };
