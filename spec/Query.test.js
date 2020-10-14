@@ -47,7 +47,10 @@ describe('spec ilorm', () => {
       await userModel.query()
         .firstName.is('Guillaume')
         .lastName.isNot('Daix')
-        .age.between([ AGE_MIN, AGE_MAX, ])
+        .age.between({
+          min: AGE_MIN,
+          max: AGE_MAX,
+        })
         .createdAt.greaterThan(dateQuery)
         .findOne();
 
@@ -61,7 +64,10 @@ describe('spec ilorm', () => {
         ancestorFields: null, });
       expect(onOperator).to.have.been.calledWith({ field: SCHEMA.age,
         operator: 'between',
-        value: [ AGE_MIN, AGE_MAX, ],
+        value: {
+          min: AGE_MIN,
+          max: AGE_MAX,
+        },
         ancestorFields: null, });
       expect(onOperator).to.have.been.calledWith({ field: SCHEMA.createdAt,
         operator: 'greaterThan',
