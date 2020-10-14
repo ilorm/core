@@ -29,7 +29,7 @@ module.exports = (TestContext) => {
       // eslint-disable-next-line no-magic-numbers
       expect(elements.length).to.equal(1);
 
-      expect(elements[0]).to.include(CHEWBACCA);
+      expect(elements[0]).to.deep.include(CHEWBACCA);
     });
   });
 
@@ -58,7 +58,7 @@ module.exports = (TestContext) => {
         .name.is(CHEWBACCA.name)
         .findOne();
 
-      expect(element).to.include(CHEWBACCA);
+      expect(element).to.deep.include(CHEWBACCA);
     });
 
     it('Should return null if no element match', async () => {

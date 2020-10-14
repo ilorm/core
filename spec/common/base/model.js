@@ -24,7 +24,7 @@ module.exports = (TestContext) => {
       const emptyInvoice = new Invoices();
 
       expect(emptyInvoice).to.deep.equal({
-        id: null,
+        [testContext.fixtures.idFieldName]: null,
         customerId: null,
         createdAt: FAKE_DATE,
         paidAt: null,
@@ -37,10 +37,11 @@ module.exports = (TestContext) => {
       const Invoices = testContext.Models.invoices;
 
       const ilormInvoice = await Invoices.query()
-        .id.is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
+        // eslint-disable-next-line no-unexpected-multiline
+        [testContext.fixtures.idFieldName].is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
         .findOne();
 
-      expect(ilormInvoice.customerId).to.be.equal(testContext.fixtures.ID.CUSTOMERS.BENJAMIN);
+      expect(ilormInvoice.customerId).to.be.deep.equal(testContext.fixtures.ID.CUSTOMERS.BENJAMIN);
 
       delete ilormInvoice.customerId;
 
@@ -54,18 +55,21 @@ module.exports = (TestContext) => {
 
       const invoiceToSave = new Invoices();
 
-      invoiceToSave.id = 'INSERT_ID';
+      const INSERT_ID = testContext.fixtures.idGenerator();
+
+      invoiceToSave[testContext.fixtures.idFieldName] = INSERT_ID;
       invoiceToSave.customerId = testContext.fixtures.ID.CUSTOMERS.BENJAMIN;
       invoiceToSave.amount = 300;
 
       await invoiceToSave.save();
 
       const invoice = await Invoices.query()
-        .id.is('INSERT_ID')
+        // eslint-disable-next-line no-unexpected-multiline
+        [testContext.fixtures.idFieldName].is(INSERT_ID)
         .findOne();
 
       expect(invoice).to.deep.equal({
-        id: 'INSERT_ID',
+        [testContext.fixtures.idFieldName]: INSERT_ID,
         customerId: testContext.fixtures.ID.CUSTOMERS.BENJAMIN,
         createdAt: FAKE_DATE,
         paidAt: null,
@@ -78,13 +82,15 @@ module.exports = (TestContext) => {
       const Invoices = testContext.Models.invoices;
 
       const ilormInvoice = await Invoices.query()
-        .id.is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
+        // eslint-disable-next-line no-unexpected-multiline
+        [testContext.fixtures.idFieldName].is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
         .findOne();
 
       await ilormInvoice.remove();
 
       const exists = await Invoices.query()
-        .id.is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
+        // eslint-disable-next-line no-unexpected-multiline
+        [testContext.fixtures.idFieldName].is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
         .findOne();
 
       expect(exists).to.be.equal(null);
@@ -94,7 +100,8 @@ module.exports = (TestContext) => {
       const Invoices = testContext.Models.invoices;
 
       const ilormInvoice = await Invoices.query()
-        .id.is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
+        // eslint-disable-next-line no-unexpected-multiline
+        [testContext.fixtures.idFieldName].is(testContext.fixtures.ID.INVOICES.BENJAMIN_1)
         .findOne();
 
       const jsonInvoice = ilormInvoice.getJson();

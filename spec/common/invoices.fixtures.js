@@ -21,6 +21,7 @@ class InvoicesFixture {
         FLORINE_1: idGenerator(),
       },
     };
+    this.idGenerator = idGenerator;
     this.idFieldName = idFieldName;
   }
 

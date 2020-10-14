@@ -17,6 +17,7 @@ class StarWarsFixtures {
       RACE_HUMAN: idGenerator(),
       RACE_WOOKIE: idGenerator(),
     };
+    this.idGenerator = idGenerator;
     this.idFieldName = idFieldName;
   }
 
