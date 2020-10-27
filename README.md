@@ -6,6 +6,8 @@ New way to manipulate data with NodeJS.
 [![./LICENCE](https://img.shields.io/github/license/ilorm/core.svg)]()
 [![](https://img.shields.io/librariesio/github/ilorm/core.svg)](https://libraries.io/github/ilorm/core)
 [![Coverage Status](https://coveralls.io/repos/github/ilorm/core/badge.svg?branch=master)](https://coveralls.io/github/ilorm/core?branch=master)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/ilorm/core.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ilorm/core/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/ilorm/core.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ilorm/core/context:javascript)
 
 You can found example and documentation on the 
 [Official Ilorm website](https://ilorm.github.io)
