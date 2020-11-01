@@ -1,3 +1,5 @@
+const TEST_DEFAULT_CONFIG = require('./config');
+
 /* eslint-disable global-require */
 const TESTS = {
   base: {
