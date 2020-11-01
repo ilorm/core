@@ -22,5 +22,6 @@ module.exports = {
   extra: {
     collectionManager: true,
     transaction: true,
+    migration: true,
   },
 };
