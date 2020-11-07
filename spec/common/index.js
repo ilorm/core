@@ -23,6 +23,7 @@ const TESTS = {
     sorting: require('./query/sorting'),
   },
   extra: {
+    collectionManager: require('./extra/collectionManager'),
     transaction: require('./extra/transaction'),
   },
 };

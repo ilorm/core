@@ -20,6 +20,7 @@ module.exports = {
     sorting: true,
   },
   extra: {
+    collectionManager: true,
     transaction: true,
   },
 };
