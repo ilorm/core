@@ -6,7 +6,7 @@ module.exports = (TestContext) => {
     const { ilorm, Connector, } = testContext;
 
     before(() => testContext.deleteSource('collectionName'));
-    after(() => testContext.cleanDb());
+    after(() => testContext.finalCleanUp());
 
     it('Should create usable collection', async () => {
       const RAW_SCHEMA = {
