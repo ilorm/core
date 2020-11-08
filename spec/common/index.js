@@ -25,6 +25,7 @@ const TESTS = {
   extra: {
     collectionManager: require('./extra/collectionManager'),
     transaction: require('./extra/transaction'),
+    migration: require('./extra/migration'),
   },
 };
 
